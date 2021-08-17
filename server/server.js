@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
+import cors from 'cors'
 
 // Routes 
 import TodoRoutes from './routes/TodoRoutes.js'
@@ -13,6 +14,7 @@ dotenv.config({ path: './config/config.env' })
 app.use(express.json({ limit: "30mb", type: "application/json", strict: true }))
 app.use(express.urlencoded({ extended: true, limit: "30mb", type: "application/x-www-form-urlencoded"}))
 app.use(morgan('dev'))
+app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 
 // Route middleware
 app.use('/api/todos', TodoRoutes)

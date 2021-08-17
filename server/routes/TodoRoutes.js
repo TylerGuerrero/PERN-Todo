@@ -49,7 +49,8 @@ router.get("/:id", async (req, res) => {
 // update todo
 router.put("/:id", async (req, res) => {
     const { id } = req.params
-
+    const { description } = req.body
+    
     try {
         const todo = await Client.query("UPDATE todo SET description = $1 WHERE id = $2 RETURNING *",
             [description, id])
